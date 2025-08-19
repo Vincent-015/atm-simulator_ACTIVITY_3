@@ -1,0 +1,88 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+
+        Console.WriteLine("===========================================");
+        Console.WriteLine("Simple ATM System by Cliff Vincent Valencia");
+        Console.WriteLine("===========================================\n");
+
+
+        double balance = 1000.00;
+
+        while (true)
+        {
+        Menu: 
+
+  
+            Console.WriteLine("\nATM Menu:");
+            Console.WriteLine("1. Check Balance");
+            Console.WriteLine("2. Deposit Money");
+            Console.WriteLine("3. Withdraw Money");
+            Console.WriteLine("4. Exit");
+            Console.Write("Choose an option (1-4): ");
+
+     
+            string choice = Console.ReadLine();
+
+            
+            switch (choice)
+            {
+                case "1":
+                  
+                    Console.WriteLine($"\nYour current balance is: ₱{balance:F2}");
+                    break;
+
+                case "2":
+                 
+                    Console.Write("\nEnter deposit amount: ");
+                    double deposit = Convert.ToDouble(Console.ReadLine());
+
+                    if (deposit <= 0) 
+                    {
+                        Console.WriteLine("Deposit amount must be positive!");
+                        continue;
+                    }
+
+                    balance += deposit;
+                    Console.WriteLine($"You have successfully deposited ₱{deposit:F2}");
+                    break;
+
+                case "3":
+                 
+                    Console.Write("\nEnter withdrawal amount: ");
+                    double withdraw = Convert.ToDouble(Console.ReadLine());
+
+                    if (withdraw <= 0) 
+                    {
+                        Console.WriteLine("Withdrawal amount must be positive!");
+                        continue;
+                    }
+
+                    if (withdraw > balance) 
+                    {
+                        Console.WriteLine("Insufficient funds!");
+                        continue;
+                    }
+
+                    balance -= withdraw;
+                    Console.WriteLine($"You have successfully withdrawn ₱{withdraw:F2}");
+                    break;
+
+                case "4":
+                   
+                    Console.WriteLine("\nThank you for using the ATM. Goodbye!");
+                    break; 
+
+                default:
+                    Console.WriteLine("\nInvalid option! Please try again.");
+                    goto Menu; 
+            }
+
+            if (choice == "4")
+                break;
+        }
+    }
+}
